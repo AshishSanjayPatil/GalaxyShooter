@@ -31,6 +31,16 @@ public class Player : MonoBehaviour
     private void Move()
     {
         transform.Translate(new Vector3(CrossPlatformInputManager.GetAxis("Horizontal"), CrossPlatformInputManager.GetAxis("Vertical"), 0) * speed * Time.deltaTime);
+        
+        if (transform.position.y >= 0)
+            transform.position = new Vector3(transform.position.x, 0, 0);
+        else if (transform.position.y <= -3.5f)
+            transform.position = new Vector3(transform.position.x, -3.5f, 0);
+
+        if (transform.position.x >= 11.5f)
+            transform.position = new Vector3(-11.5f, transform.position.y, 0);
+        else if (transform.position.x <= -11.5f)
+            transform.position = new Vector3(11.5f, transform.position.y, 0);
     }
 
     private void Shoot()
