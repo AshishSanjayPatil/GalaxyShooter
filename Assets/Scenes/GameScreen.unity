@@ -551,12 +551,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8499467038759751206, guid: b283e19a52a4ad84bb4faeacde05e5c9,
-        type: 3}
-      propertyPath: laserPrefab
-      value: 
-      objectReference: {fileID: 1815556001164026556, guid: bc5e07bb808df634297cf7a08f760ed3,
-        type: 3}
+    - target: {fileID: 393559215, guid: b283e19a52a4ad84bb4faeacde05e5c9, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8499467038759751209, guid: b283e19a52a4ad84bb4faeacde05e5c9,
         type: 3}
       propertyPath: m_RootOrder

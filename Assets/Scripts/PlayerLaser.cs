@@ -20,4 +20,13 @@ public class PlayerLaser : MonoBehaviour
 
         transform.Translate(Vector3.up * speed * Time.deltaTime);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<Enemy>())
+        {
+            Destroy(this.gameObject);
+            Destroy(other.gameObject);
+        }
+    }
 }
