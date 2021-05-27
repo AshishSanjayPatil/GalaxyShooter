@@ -28,7 +28,9 @@ public class Enemy : MonoBehaviour
     {
         while(this.gameObject)
         {
-            Instantiate(laserPrefab, transform.position + new Vector3(0, -0.85f, 0), Quaternion.identity);
+            GameObject newEnemyLaser = Instantiate(laserPrefab, transform.position + new Vector3(0, -0.85f, 0), Quaternion.identity);
+            //newEnemyLaser.transform.parent = 
+
             yield return new WaitForSeconds(3);
         }
     }

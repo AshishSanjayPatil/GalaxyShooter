@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Laser : MonoBehaviour
+public class PlayerLaser : MonoBehaviour
 {
     float speed = 10f;
 
@@ -15,6 +15,9 @@ public class Laser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform.position.y >= 14f)
+            Destroy(this.gameObject);
+
         transform.Translate(Vector3.up * speed * Time.deltaTime);
     }
 }

@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
 
     private void Shoot()
     {
-        Instantiate(laserPrefab, transform.position + new Vector3(0, 0.85f, 0), Quaternion.identity);
+        GameObject newPlayerLaser = Instantiate(laserPrefab, transform.position + new Vector3(0, 0.85f, 0), Quaternion.identity);
+        //newPlayerLaser.transform.parent =
     }
 }
