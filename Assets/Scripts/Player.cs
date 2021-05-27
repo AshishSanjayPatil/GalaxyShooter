@@ -11,6 +11,10 @@ public class Player : MonoBehaviour
 
     float speed = 6.5f;
 
+    float fireRate = 0.5f;
+
+    float nextFire = 0;
+
     void Start()
     {
         
@@ -23,7 +27,7 @@ public class Player : MonoBehaviour
         else
         {
             Move();
-            if(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+            if((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && Time.time > nextFire)
                 Shoot();
         }
     }
@@ -45,6 +49,7 @@ public class Player : MonoBehaviour
 
     private void Shoot()
     {
+        nextFire = Time.time + fireRate;
         GameObject newPlayerLaser = Instantiate(laserPrefab, transform.position + new Vector3(0, 0.85f, 0), Quaternion.identity);
         //newPlayerLaser.transform.parent =
     }
