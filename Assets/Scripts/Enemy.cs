@@ -34,4 +34,13 @@ public class Enemy : MonoBehaviour
             yield return new WaitForSeconds(3);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<Player>())
+        {
+            other.GetComponent<Player>().ReduceLives();
+            Destroy(this.gameObject);
+        }
+    }
 }

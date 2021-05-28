@@ -393,16 +393,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyLaser
       objectReference: {fileID: 0}
-    - target: {fileID: 2523613129855115908, guid: bc5e07bb808df634297cf7a08f760ed3,
-        type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2523613129855115908, guid: bc5e07bb808df634297cf7a08f760ed3,
-        type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc5e07bb808df634297cf7a08f760ed3, type: 3}
 --- !u!1001 &5881948052674419205
@@ -416,6 +406,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881948054447203459, guid: 866c8b387a7d6284db2f47f92d5f858e,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5881948054447203468, guid: 866c8b387a7d6284db2f47f92d5f858e,
         type: 3}
@@ -472,12 +467,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5881948054447203471, guid: 866c8b387a7d6284db2f47f92d5f858e,
+    - target: {fileID: 9195683876945123370, guid: 866c8b387a7d6284db2f47f92d5f858e,
         type: 3}
-      propertyPath: laserPrefab
-      value: 
-      objectReference: {fileID: 2872923057249913292, guid: 818dcc45df486074dbdde620571d9b27,
-        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 866c8b387a7d6284db2f47f92d5f858e, type: 3}
 --- !u!1001 &8138633657238338030
@@ -558,13 +552,8 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6901050153145879589, guid: b283e19a52a4ad84bb4faeacde05e5c9,
         type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6901050153145879589, guid: b283e19a52a4ad84bb4faeacde05e5c9,
-        type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8499467038759751209, guid: b283e19a52a4ad84bb4faeacde05e5c9,
         type: 3}
@@ -574,7 +563,7 @@ PrefabInstance:
     - target: {fileID: 8499467038759751209, guid: b283e19a52a4ad84bb4faeacde05e5c9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8499467038759751209, guid: b283e19a52a4ad84bb4faeacde05e5c9,
         type: 3}
@@ -620,6 +609,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8499467038759751210, guid: b283e19a52a4ad84bb4faeacde05e5c9,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8499467038759751213, guid: b283e19a52a4ad84bb4faeacde05e5c9,
         type: 3}

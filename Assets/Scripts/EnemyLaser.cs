@@ -21,4 +21,13 @@ public class EnemyLaser : MonoBehaviour
         rigidBody.velocity = new Vector3(moveDirection.x + 0.5f, moveDirection.y, 0);
         Destroy(this.gameObject, 5f);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<Player>())
+        {
+            player.ReduceLives();
+            Destroy(this.gameObject);
+        }
+    }
 }

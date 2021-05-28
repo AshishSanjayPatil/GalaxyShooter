@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     GameObject laserPrefab;
 
+    [SerializeField]
+    int lives = 3;
+
     float speed = 6.5f;
 
     float fireRate = 0.5f;
@@ -26,9 +29,16 @@ public class Player : MonoBehaviour
             transform.Translate(Vector3.up * 1.5f * Time.deltaTime);
         else
         {
-            Move();
-            if((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && Time.time > nextFire)
-                Shoot();
+            if(lives > 0)
+            {
+                Move();
+                if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && Time.time > nextFire)
+                    Shoot();
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 
@@ -52,5 +62,10 @@ public class Player : MonoBehaviour
         nextFire = Time.time + fireRate;
         GameObject newPlayerLaser = Instantiate(laserPrefab, transform.position + new Vector3(0, 0.85f, 0), Quaternion.identity);
         //newPlayerLaser.transform.parent =
+    }
+
+    public void ReduceLives()
+    {
+        lives--;
     }
 }
