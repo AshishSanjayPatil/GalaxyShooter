@@ -29,16 +29,9 @@ public class Player : MonoBehaviour
             transform.Translate(Vector3.up * 1.5f * Time.deltaTime);
         else
         {
-            if(lives > 0)
-            {
-                Move();
-                if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && Time.time > nextFire)
-                    Shoot();
-            }
-            else
-            {
-                Destroy(this.gameObject);
-            }
+            Move();
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && Time.time > nextFire)
+                Shoot();
         }
     }
 
@@ -67,5 +60,8 @@ public class Player : MonoBehaviour
     public void ReduceLives()
     {
         lives--;
+
+        if (lives <= 0)
+            Destroy(this.gameObject);
     }
 }
