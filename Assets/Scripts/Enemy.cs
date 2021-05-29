@@ -9,9 +9,12 @@ public class Enemy : MonoBehaviour
 
     float speed = 8f;
 
+    SpawnManager spawnManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        spawnManager = FindObjectOfType<SpawnManager>();
         StartCoroutine(ShootLaser());
     }
 
@@ -29,8 +32,7 @@ public class Enemy : MonoBehaviour
         while(this.gameObject)
         {
             GameObject newEnemyLaser = Instantiate(laserPrefab, transform.position + new Vector3(0, -0.85f, 0), Quaternion.identity);
-            //newEnemyLaser.transform.parent = 
-
+            newEnemyLaser.transform.parent = spawnManager.CleanUpContainer();
             yield return new WaitForSeconds(3);
         }
     }
