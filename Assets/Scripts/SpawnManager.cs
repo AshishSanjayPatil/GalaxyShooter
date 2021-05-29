@@ -13,12 +13,11 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     GameObject cleanUp;
 
-    Player player;
+    bool stopSpawn = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = FindObjectOfType<Player>();
         StartCoroutine(SpawnEnemy());
     }
 
@@ -32,7 +31,7 @@ public class SpawnManager : MonoBehaviour
     {
         yield return new WaitForSeconds(4);
 
-        while (player.IsAlive())
+        while (!stopSpawn)
         {
             GameObject newEnemy = Instantiate(enemyPrefab, new Vector3(Random.Range(-9, 9), 13, 0), Quaternion.identity);
             newEnemy.transform.parent = cleanUp.transform;
@@ -43,5 +42,10 @@ public class SpawnManager : MonoBehaviour
     public Transform CleanUpContainer()
     {
         return cleanUp.transform;
+    }
+
+    public void StopSpawning()
+    {
+        stopSpawn = true;
     }
 }

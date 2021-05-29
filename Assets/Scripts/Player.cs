@@ -18,8 +18,6 @@ public class Player : MonoBehaviour
 
     float nextFire = 0;
 
-    bool isAlive = true;
-
     SpawnManager spawnManager;
 
     void Start()
@@ -67,13 +65,8 @@ public class Player : MonoBehaviour
 
         if (lives <= 0)
         {
-            isAlive = false;
+            spawnManager.StopSpawning();
             Destroy(this.gameObject);
         }
-    }
-
-    public bool IsAlive()
-    {
-        return isAlive;
     }
 }
