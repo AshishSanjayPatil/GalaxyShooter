@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.down * speed * Time.deltaTime);
+        transform.Translate(speed * Time.deltaTime * Vector3.down);
 
         if (transform.position.y <= -6)
             transform.position = new Vector3(Random.Range(-9, 9), 13);
@@ -31,17 +31,17 @@ public class Enemy : MonoBehaviour
     {
         while(this.gameObject)
         {
-            GameObject newEnemyLaser = Instantiate(laserPrefab, transform.position + new Vector3(0, -0.85f, 0), Quaternion.identity);
+            GameObject newEnemyLaser = Instantiate(laserPrefab, transform.position + new Vector3(0.1f, -1.35f, 0), Quaternion.identity);
             newEnemyLaser.transform.parent = spawnManager.CleanUpContainer();
             yield return new WaitForSeconds(3);
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.GetComponent<Player>())
+        if (collision.GetComponent<Player>())
         {
-            other.GetComponent<Player>().ReduceLives();
+            collision.GetComponent<Player>().ReduceLives();
             Destroy(this.gameObject);
         }
     }

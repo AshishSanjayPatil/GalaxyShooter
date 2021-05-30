@@ -18,15 +18,15 @@ public class PlayerLaser : MonoBehaviour
         if (transform.position.y >= 14f)
             Destroy(this.gameObject);
 
-        transform.Translate(Vector3.up * speed * Time.deltaTime);
+        transform.Translate(speed * Time.deltaTime * Vector3.up);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.GetComponent<Enemy>())
+        if (collision.GetComponent<Enemy>() || collision.GetComponent<EnemyLaser>())
         {
             Destroy(this.gameObject);
-            Destroy(other.gameObject);
+            Destroy(collision.gameObject);
         }
     }
 }

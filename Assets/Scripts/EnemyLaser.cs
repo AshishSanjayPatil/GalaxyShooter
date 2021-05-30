@@ -8,14 +8,14 @@ public class EnemyLaser : MonoBehaviour
 
     Player player;
 
-    Rigidbody rigidBody;
+    Rigidbody2D rigidBody;
 
     Vector3 moveDirection;
 
     // Start is called before the first frame update
     void Start()
     {
-        rigidBody = GetComponent<Rigidbody>();
+        rigidBody = GetComponent<Rigidbody2D>();
         player = FindObjectOfType<Player>();
 
         if (player)
@@ -26,9 +26,9 @@ public class EnemyLaser : MonoBehaviour
         Destroy(this.gameObject, 5f);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.GetComponent<Player>())
+        if (collision.GetComponent<Player>())
         {
             player.ReduceLives();
             Destroy(this.gameObject);
