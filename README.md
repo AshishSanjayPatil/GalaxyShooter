@@ -7,7 +7,7 @@ Galaxy Shooter is a 2D Top-Down Space shooter game.
 
 1. Use the "WASD Keys" or the "Arrow Keys" to move the Space Ship forward, Left, Right or Backwards.
 
-2. Press and Hold the "Space Key" to fire a stream of Lasers.
+2. Press the "Space Key" or the "Left Mouse Button" to fire Lasers.
 
 3. The user can "Quit" the game at any given time by pressing the "Q Key" or the "Quit Button".
 
