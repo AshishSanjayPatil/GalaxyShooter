@@ -18,6 +18,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     GameObject tripleShotPrefab;
 
+    [SerializeField]
+    GameObject ShieldVFX;
+
     float speed = 6.5f;
 
     float fireRate = 0.25f;
@@ -44,6 +47,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         spawnManager = FindObjectOfType<SpawnManager>();
+        ShieldVFX.SetActive(false);
     }
 
     void Update()
@@ -114,6 +118,7 @@ public class Player : MonoBehaviour
             if (shieldLives <= 0)
             {
                 shieldActive = false;
+                ShieldVFX.SetActive(false);
 
                 if (ShieldOnRoutine != null)
                 {
@@ -159,6 +164,7 @@ public class Player : MonoBehaviour
     {
         shieldActive = true;
         shieldLives = 3;
+        ShieldVFX.SetActive(true);
 
         if (ShieldOnRoutine != null)
         {
@@ -185,5 +191,6 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(10);
         shieldActive = false;
+        ShieldVFX.SetActive(false);
     }
 }
