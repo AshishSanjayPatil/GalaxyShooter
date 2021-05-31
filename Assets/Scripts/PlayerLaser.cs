@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerLaser : MonoBehaviour
 {
-    float speed = 10f;
+    float speed = 6f;
 
     // Start is called before the first frame update
     void Start()

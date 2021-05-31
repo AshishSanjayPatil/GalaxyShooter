@@ -124,6 +124,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void AddLife()
+    {
+        lives++;
+    }
+
     public void TripleShotOn()
     {
         tripleShotActive = true;
@@ -153,6 +158,7 @@ public class Player : MonoBehaviour
     public void ShieldOn()
     {
         shieldActive = true;
+        shieldLives = 3;
 
         if (ShieldOnRoutine != null)
         {

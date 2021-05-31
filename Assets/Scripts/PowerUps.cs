@@ -5,10 +5,9 @@ using UnityEngine;
 public class PowerUps : MonoBehaviour
 {
     [SerializeField]
-    float speed = 3f;
-
-    [SerializeField]
     int powerUpCode;
+
+    float speed = 3f;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +42,7 @@ public class PowerUps : MonoBehaviour
                     player.ShieldOn();
                     break;
                 case 3:
-                    //player.AddLife();
+                    player.AddLife();
                     break;
                 default:
                     Debug.Log("PowerCode Error!!!");

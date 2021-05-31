@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyLaser : MonoBehaviour
 {
-    float speed = 10f;
+    float speed = 8f;
 
     Player player;
 
