@@ -16,7 +16,12 @@ public class PlayerLaser : MonoBehaviour
     void Update()
     {
         if (transform.position.y >= 14f)
+        {
+            if (transform.parent.CompareTag("TripleShot"))
+                Destroy(transform.parent.gameObject);
+
             Destroy(this.gameObject);
+        }
 
         transform.Translate(speed * Time.deltaTime * Vector3.up);
     }

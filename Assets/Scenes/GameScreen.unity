@@ -288,7 +288,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
@@ -486,9 +486,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3b53d68a0daeea49a49779a50b4b661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lives: 3
+  shieldLives: 3
   laserPrefab: {fileID: 8811482047006283117, guid: fc709216c2e569b4dad7a57e218c91a1,
     type: 3}
-  lives: 3
+  tripleShotPrefab: {fileID: 169229156099507193, guid: d359d9b987011ef4fa91c761739884dc,
+    type: 3}
+  tripleShotActive: 0
+  speedBoostActive: 0
+  shieldActive: 0
 --- !u!61 &1719153072
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -598,5 +604,5 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

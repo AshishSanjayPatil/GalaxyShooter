@@ -23,6 +23,7 @@ public class EnemyLaser : MonoBehaviour
             moveDirection = (player.transform.position - transform.position).normalized * speed;
             rigidBody.velocity = new Vector3(moveDirection.x + 0.5f, moveDirection.y, 0);
         }
+
         Destroy(this.gameObject, 5f);
     }
 
