@@ -9,7 +9,7 @@ Galaxy Shooter is a 2D Top-Down Space shooter game.
 
 2. Press the "Space Key" or the "Left Mouse Button" to fire Lasers.
 
-3. The user can "Quit" the game at any given time by pressing the "Q Key" or the "Quit Button".
+3. The user can "Quit" the game at any given moment by pressing the "Q Key" or the "Quit Button".
 
 This project was developed for the better understanding of Unity Engine and C#.
 
