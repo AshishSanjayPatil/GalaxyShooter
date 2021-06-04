@@ -23,12 +23,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     GameObject ShieldVFX;
 
-    float speed = 6.5f;
-
-    float fireRate = 0.25f;
-
-    float nextFire = 0;
-
     [SerializeField]
     bool tripleShotActive = false;
 
@@ -37,6 +31,12 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     bool shieldActive = false;
+
+    float speed = 6.5f;
+
+    float fireRate = 0.25f;
+
+    float nextFire = 0;
 
     Coroutine TripleShotRoutine = null;
 
