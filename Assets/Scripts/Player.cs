@@ -143,7 +143,17 @@ public class Player : MonoBehaviour
 
     public void AddLife()
     {
-        lives++;
+        if (lives < 3)
+        {
+            lives++;
+
+            if (engineDamage[0].activeSelf && engineDamage[1].activeSelf)
+                engineDamage[Random.Range(0, engineDamage.Length)].SetActive(false);
+            else if (engineDamage[0].activeSelf)
+                engineDamage[0].SetActive(false);
+            else if (engineDamage[1].activeSelf)
+                engineDamage[1].SetActive(false);
+        }
     }
 
     public void TripleShotOn()
