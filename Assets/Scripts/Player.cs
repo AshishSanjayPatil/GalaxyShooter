@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
@@ -17,6 +16,9 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     GameObject tripleShotPrefab;
+
+    [SerializeField]
+    GameObject[] engineDamage; 
 
     [SerializeField]
     GameObject ShieldVFX;
@@ -104,6 +106,16 @@ public class Player : MonoBehaviour
         if (!shieldActive)
         {
             lives--;
+
+            if (lives == 1)
+            {
+                engineDamage[0].SetActive(true);
+                engineDamage[1].SetActive(true);
+            }
+            else if (lives == 2)
+            {
+                engineDamage[Random.Range(0, engineDamage.Length)].SetActive(true);
+            }
 
             if (lives <= 0)
             {

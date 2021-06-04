@@ -50,7 +50,7 @@ public class SpawnManager : MonoBehaviour
         while (!stopSpawn)
         {
             yield return new WaitForSeconds(Random.Range(7, 11));
-            GameObject newPowerUp = Instantiate(powerUpsPrefabs[Random.Range(0, 3)], new Vector3(Random.Range(-9, 9), 13, 0), Quaternion.identity);
+            GameObject newPowerUp = Instantiate(powerUpsPrefabs[Random.Range(0, powerUpsPrefabs.Length)], new Vector3(Random.Range(-9, 9), 13, 0), Quaternion.identity);
             newPowerUp.transform.parent = cleanUp.transform;
         }
     }
