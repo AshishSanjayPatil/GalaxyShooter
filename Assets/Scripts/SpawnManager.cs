@@ -16,11 +16,12 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     GameObject cleanUp;
 
-    bool stopSpawn = false;
+    GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         StartCoroutine(SpawnEnemy());
         StartCoroutine(SpawnPowerUps());
     }
@@ -35,7 +36,7 @@ public class SpawnManager : MonoBehaviour
     {
         yield return new WaitForSeconds(4);
 
-        while (!stopSpawn)
+        while (!gameManager.GameStatus())
         {
             GameObject newEnemy = Instantiate(enemyPrefab, new Vector3(Random.Range(-9, 9), 13, 0), Quaternion.identity);
             newEnemy.transform.parent = cleanUp.transform;
@@ -47,7 +48,7 @@ public class SpawnManager : MonoBehaviour
     {
         yield return new WaitForSeconds(4);
 
-        while (!stopSpawn)
+        while (!gameManager.GameStatus())
         {
             yield return new WaitForSeconds(Random.Range(7, 11));
             GameObject newPowerUp = Instantiate(powerUpsPrefabs[Random.Range(0, powerUpsPrefabs.Length)], new Vector3(Random.Range(-9, 9), 13, 0), Quaternion.identity);
@@ -58,10 +59,5 @@ public class SpawnManager : MonoBehaviour
     public Transform CleanUpContainer()
     {
         return cleanUp.transform;
-    }
-
-    public void StopSpawning()
-    {
-        stopSpawn = true;
     }
 }

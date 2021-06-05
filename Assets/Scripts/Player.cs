@@ -126,7 +126,6 @@ public class Player : MonoBehaviour
 
             if (lives <= 0)
             {
-                spawnManager.StopSpawning();
                 Destroy(this.gameObject);
             }
         }
