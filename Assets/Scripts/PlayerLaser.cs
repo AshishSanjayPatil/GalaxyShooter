@@ -28,7 +28,7 @@ public class PlayerLaser : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<Enemy>() || collision.GetComponent<EnemyLaser>())
+        if (collision.GetComponent<EnemyLaser>())
         {
             Destroy(this.gameObject);
             Destroy(collision.gameObject);

@@ -21,7 +21,10 @@ public class Player : MonoBehaviour
     GameObject[] engineDamage; 
 
     [SerializeField]
-    GameObject ShieldVFX;
+    GameObject shieldVFX;
+
+    [SerializeField]
+    GameObject speedBoostVFX;
 
     [SerializeField]
     bool tripleShotActive = false;
@@ -46,10 +49,13 @@ public class Player : MonoBehaviour
 
     SpawnManager spawnManager;
 
+    UIManager uiManager;
+
     void Start()
     {
+        uiManager = FindObjectOfType<UIManager>();
         spawnManager = FindObjectOfType<SpawnManager>();
-        ShieldVFX.SetActive(false);
+        uiManager.UpdateLives(lives);
     }
 
     void Update()
@@ -106,6 +112,7 @@ public class Player : MonoBehaviour
         if (!shieldActive)
         {
             lives--;
+            uiManager.UpdateLives(lives);
 
             if (lives == 1)
             {
@@ -130,7 +137,7 @@ public class Player : MonoBehaviour
             if (shieldLives <= 0)
             {
                 shieldActive = false;
-                ShieldVFX.SetActive(false);
+                shieldVFX.SetActive(false);
 
                 if (ShieldOnRoutine != null)
                 {
@@ -146,6 +153,7 @@ public class Player : MonoBehaviour
         if (lives < 3)
         {
             lives++;
+            uiManager.UpdateLives(lives);
 
             if (engineDamage[0].activeSelf && engineDamage[1].activeSelf)
                 engineDamage[Random.Range(0, engineDamage.Length)].SetActive(false);
@@ -172,6 +180,7 @@ public class Player : MonoBehaviour
     public void SpeedBoostOn()
     {
         speedBoostActive = true;
+        speedBoostVFX.SetActive(true);
 
         if (SpeedBoostRoutine != null)
         {
@@ -186,7 +195,7 @@ public class Player : MonoBehaviour
     {
         shieldActive = true;
         shieldLives = 3;
-        ShieldVFX.SetActive(true);
+        shieldVFX.SetActive(true);
 
         if (ShieldOnRoutine != null)
         {
@@ -207,12 +216,13 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         speedBoostActive = false;
+        speedBoostVFX.SetActive(false);
     }
 
     IEnumerator ShieldPowerUpCD()
     {
         yield return new WaitForSeconds(10);
         shieldActive = false;
-        ShieldVFX.SetActive(false);
+        shieldVFX.SetActive(false);
     }
 }

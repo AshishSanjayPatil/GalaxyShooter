@@ -11,9 +11,12 @@ public class Enemy : MonoBehaviour
 
     SpawnManager spawnManager;
 
+    UIManager uiManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        uiManager = FindObjectOfType<UIManager>();
         spawnManager = FindObjectOfType<SpawnManager>();
         StartCoroutine(ShootLaser());
     }
@@ -42,6 +45,13 @@ public class Enemy : MonoBehaviour
         if (collision.GetComponent<Player>())
         {
             collision.GetComponent<Player>().ReduceLives();
+            uiManager.AddScore();
+            Destroy(this.gameObject);
+        }
+
+        if (collision.GetComponent<PlayerLaser>())
+        {
+            uiManager.AddScore();
             Destroy(this.gameObject);
         }
     }
