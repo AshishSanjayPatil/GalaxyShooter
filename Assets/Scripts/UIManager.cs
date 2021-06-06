@@ -15,10 +15,13 @@ public class UIManager : MonoBehaviour
     TextMeshProUGUI scoreText;
 
     [SerializeField]
-    TextMeshProUGUI restartText;
+    Image displayLives;
 
     [SerializeField]
-    Image displayLives;
+    GameObject restartButton;
+
+    [SerializeField]
+    GameObject quitButton;
 
     [SerializeField]
     Sprite[] livesImages;
@@ -28,6 +31,11 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameOverText.gameObject.SetActive(false);
+        restartButton.SetActive(false);
+        quitButton.SetActive(false);
+        scoreText.gameObject.SetActive(true);
+        displayLives.gameObject.SetActive(true);
         gameManager = FindObjectOfType<GameManager>();
         scoreText.text = "Score: " + score.ToString();
     }
@@ -56,7 +64,10 @@ public class UIManager : MonoBehaviour
     {
         gameManager.EndGame();
         gameOverText.gameObject.SetActive(true);
-        restartText.gameObject.SetActive(true);
+        restartButton.SetActive(true);
+        quitButton.SetActive(true);
+        scoreText.gameObject.SetActive(false);
+        displayLives.gameObject.SetActive(false);
         StartCoroutine(FlickerVFX());
     }
 
