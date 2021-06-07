@@ -7,6 +7,9 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     GameObject laserPrefab;
 
+    [SerializeField]
+    GameObject enemyExplosion;
+
     float speed = 8f;
 
     SpawnManager spawnManager;
@@ -46,12 +49,17 @@ public class Enemy : MonoBehaviour
         {
             collision.GetComponent<Player>().ReduceLives();
             uiManager.AddScore();
+            GameObject newEnemyExplosion = Instantiate(enemyExplosion, transform.position, Quaternion.identity);
+            newEnemyExplosion.transform.parent = spawnManager.CleanUpContainer();
             Destroy(this.gameObject);
         }
 
         if (collision.GetComponent<PlayerLaser>())
         {
             uiManager.AddScore();
+            GameObject newEnemyExplosion = Instantiate(enemyExplosion, transform.position, Quaternion.identity);
+            newEnemyExplosion.transform.parent = spawnManager.CleanUpContainer();
+            Destroy(collision.gameObject);
             Destroy(this.gameObject);
         }
     }

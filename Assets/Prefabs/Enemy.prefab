@@ -145,3 +145,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   laserPrefab: {fileID: 8891022379266977497, guid: bc5e07bb808df634297cf7a08f760ed3,
     type: 3}
+  enemyExplosion: {fileID: 8280536172259022331, guid: b4b3f7ccc5dd34d46bd1e733d2739fdb,
+    type: 3}
