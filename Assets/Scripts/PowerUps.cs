@@ -9,15 +9,20 @@ public class PowerUps : MonoBehaviour
 
     float speed = 3f;
 
+    GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (gameManager.GameStatus())
+            Destroy(this.gameObject);
+
         transform.Translate(speed * Time.deltaTime * Vector3.down);
 
         if (transform.position.y <= -8f)

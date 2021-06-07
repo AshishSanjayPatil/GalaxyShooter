@@ -16,9 +16,12 @@ public class Enemy : MonoBehaviour
 
     UIManager uiManager;
 
+    GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         uiManager = FindObjectOfType<UIManager>();
         spawnManager = FindObjectOfType<SpawnManager>();
         StartCoroutine(ShootLaser());
@@ -27,6 +30,14 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameManager.GameStatus())
+        {
+            GameObject newEnemyExplosion = Instantiate(enemyExplosion, transform.position, Quaternion.identity);
+            newEnemyExplosion.transform.parent = spawnManager.CleanUpContainer();
+            Destroy(newEnemyExplosion, 3f);
+            Destroy(this.gameObject);
+        }
+
         transform.Translate(speed * Time.deltaTime * Vector3.down);
 
         if (transform.position.y <= -6)
@@ -51,6 +62,7 @@ public class Enemy : MonoBehaviour
             uiManager.AddScore();
             GameObject newEnemyExplosion = Instantiate(enemyExplosion, transform.position, Quaternion.identity);
             newEnemyExplosion.transform.parent = spawnManager.CleanUpContainer();
+            Destroy(newEnemyExplosion, 3f);
             Destroy(this.gameObject);
         }
 

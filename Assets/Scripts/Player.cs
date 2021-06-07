@@ -131,6 +131,7 @@ public class Player : MonoBehaviour
             {
                 GameObject newDeathVFX = Instantiate(deathVFX, transform.position, Quaternion.identity);
                 newDeathVFX.transform.parent = spawnManager.CleanUpContainer();
+                Destroy(newDeathVFX, 3f);
                 Destroy(this.gameObject);
             }
         }
