@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
     int shieldLives = 3;
 
     [SerializeField]
+    GameObject deathVFX;
+
+    [SerializeField]
     GameObject laserPrefab;
 
     [SerializeField]
@@ -126,6 +129,8 @@ public class Player : MonoBehaviour
 
             if (lives <= 0)
             {
+                GameObject newDeathVFX = Instantiate(deathVFX, transform.position, Quaternion.identity);
+                newDeathVFX.transform.parent = spawnManager.CleanUpContainer();
                 Destroy(this.gameObject);
             }
         }

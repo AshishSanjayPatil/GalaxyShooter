@@ -1844,6 +1844,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lives: 3
   shieldLives: 3
+  deathVFX: {fileID: 6505144611379430233, guid: 269fca98d87ac2c46b8d9f4c942bbc9a,
+    type: 3}
   laserPrefab: {fileID: 8811482047006283117, guid: fc709216c2e569b4dad7a57e218c91a1,
     type: 3}
   tripleShotPrefab: {fileID: 169229156099507193, guid: d359d9b987011ef4fa91c761739884dc,
