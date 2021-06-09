@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
         transform.Translate(speed * Time.deltaTime * Vector3.down);
 
         if (transform.position.y <= -6)
-            transform.position = new Vector3(Random.Range(-9, 9), 13);
+            transform.position = new Vector3(Random.Range(-9f, 9f), 8.5f);
     }
 
     IEnumerator ShootLaser()

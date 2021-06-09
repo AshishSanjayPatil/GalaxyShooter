@@ -15,7 +15,7 @@ public class PlayerLaser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y >= 14f)
+        if (transform.position.y >= 8f)
         {
             if (transform.parent.CompareTag("TripleShot"))
                 Destroy(transform.parent.gameObject);

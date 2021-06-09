@@ -14,6 +14,9 @@ public class SpawnManager : MonoBehaviour
     GameObject[] powerUpsPrefabs;
 
     [SerializeField]
+    GameObject asteroidPrefab;
+
+    [SerializeField]
     GameObject cleanUp;
 
     GameManager gameManager;
@@ -24,6 +27,7 @@ public class SpawnManager : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         StartCoroutine(SpawnEnemy());
         StartCoroutine(SpawnPowerUps());
+        StartCoroutine(SpawnAsteroid());
     }
 
     // Update is called once per frame
@@ -38,7 +42,7 @@ public class SpawnManager : MonoBehaviour
 
         while (!gameManager.GameStatus())
         {
-            GameObject newEnemy = Instantiate(enemyPrefab, new Vector3(Random.Range(-9, 9), 13, 0), Quaternion.identity);
+            GameObject newEnemy = Instantiate(enemyPrefab, new Vector3(Random.Range(-9f, 9f), 8.5f, 0), Quaternion.identity);
             newEnemy.transform.parent = cleanUp.transform;
             yield return new WaitForSeconds(spawnRate);
         }
@@ -51,8 +55,18 @@ public class SpawnManager : MonoBehaviour
         while (!gameManager.GameStatus())
         {
             yield return new WaitForSeconds(Random.Range(7, 11));
-            GameObject newPowerUp = Instantiate(powerUpsPrefabs[Random.Range(0, powerUpsPrefabs.Length)], new Vector3(Random.Range(-9, 9), 13, 0), Quaternion.identity);
+            GameObject newPowerUp = Instantiate(powerUpsPrefabs[Random.Range(0, powerUpsPrefabs.Length)], new Vector3(Random.Range(-9f, 9f), 8.5f, 0), Quaternion.identity);
             newPowerUp.transform.parent = cleanUp.transform;
+        }
+    }
+
+    IEnumerator SpawnAsteroid()
+    {
+        while(!gameManager.GameStatus())
+        {
+            yield return new WaitForSeconds(30);
+            GameObject newAsteroid = Instantiate(asteroidPrefab, new Vector3(Random.Range(-10f, 10f), 12f, 0), Quaternion.identity);
+            newAsteroid.transform.parent = cleanUp.transform;
         }
     }
 

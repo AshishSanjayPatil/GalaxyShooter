@@ -252,6 +252,8 @@ MonoBehaviour:
   - {fileID: 2370502372114301387, guid: 335e3417c3167704f95765e9890bd3fc, type: 3}
   - {fileID: 937748024949399008, guid: 6894a80f68ff72a4abcb7b320502b23c, type: 3}
   - {fileID: 2345956079613637076, guid: 3d1034c5c4cfdca4ab48a524f784ea66, type: 3}
+  asteroidPrefab: {fileID: 7032806218594014517, guid: e51704e3d2d9d13498fc499b3a02c853,
+    type: 3}
   cleanUp: {fileID: 950118478}
 --- !u!1 &263572915
 GameObject:
