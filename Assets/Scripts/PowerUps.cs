@@ -7,6 +7,9 @@ public class PowerUps : MonoBehaviour
     [SerializeField]
     int powerUpCode;
 
+    [SerializeField]
+    AudioClip powerUpSFX;
+
     float speed = 3f;
 
     GameManager gameManager;
@@ -54,6 +57,7 @@ public class PowerUps : MonoBehaviour
                     break;
             }
 
+            AudioSource.PlayClipAtPoint(powerUpSFX, Camera.main.transform.position, 0.5f);
             Destroy(this.gameObject);
         }
     }

@@ -10,6 +10,9 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     GameObject enemyExplosion;
 
+    [SerializeField]
+    AudioClip explosionSFX;
+
     float speed = 8f;
 
     SpawnManager spawnManager;
@@ -60,6 +63,7 @@ public class Enemy : MonoBehaviour
         {
             collision.GetComponent<Player>().ReduceLives();
             uiManager.AddScore();
+            AudioSource.PlayClipAtPoint(explosionSFX, Camera.main.transform.position, 0.5f);
             GameObject newEnemyExplosion = Instantiate(enemyExplosion, transform.position, Quaternion.identity);
             newEnemyExplosion.transform.parent = spawnManager.CleanUpContainer();
             Destroy(newEnemyExplosion, 3f);
@@ -69,6 +73,7 @@ public class Enemy : MonoBehaviour
         if (collision.GetComponent<PlayerLaser>())
         {
             uiManager.AddScore();
+            AudioSource.PlayClipAtPoint(explosionSFX, Camera.main.transform.position, 0.5f);
             GameObject newEnemyExplosion = Instantiate(enemyExplosion, transform.position, Quaternion.identity);
             newEnemyExplosion.transform.parent = spawnManager.CleanUpContainer();
             Destroy(collision.gameObject);

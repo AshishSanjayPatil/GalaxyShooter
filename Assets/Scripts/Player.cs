@@ -30,12 +30,12 @@ public class Player : MonoBehaviour
     GameObject speedBoostVFX;
 
     [SerializeField]
+    AudioClip explosionSFX;
+
     bool tripleShotActive = false;
 
-    [SerializeField]
     bool speedBoostActive = false;
 
-    [SerializeField]
     bool shieldActive = false;
 
     float speed = 6.5f;
@@ -54,8 +54,11 @@ public class Player : MonoBehaviour
 
     UIManager uiManager;
 
+    AudioSource audioSource;
+
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         uiManager = FindObjectOfType<UIManager>();
         spawnManager = FindObjectOfType<SpawnManager>();
         uiManager.UpdateLives(lives);
@@ -108,6 +111,8 @@ public class Player : MonoBehaviour
             GameObject newTripleShot = Instantiate(tripleShotPrefab, transform.position, Quaternion.identity);
             newTripleShot.transform.parent = spawnManager.CleanUpContainer();
         }
+
+        audioSource.Play();
     }
 
     public void ReduceLives()
@@ -129,6 +134,7 @@ public class Player : MonoBehaviour
 
             if (lives <= 0)
             {
+                AudioSource.PlayClipAtPoint(explosionSFX, Camera.main.transform.position, 0.5f);
                 GameObject newDeathVFX = Instantiate(deathVFX, transform.position, Quaternion.identity);
                 newDeathVFX.transform.parent = spawnManager.CleanUpContainer();
                 Destroy(newDeathVFX, 3f);

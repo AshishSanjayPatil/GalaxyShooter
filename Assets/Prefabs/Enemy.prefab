@@ -147,3 +147,4 @@ MonoBehaviour:
     type: 3}
   enemyExplosion: {fileID: 8280536172259022331, guid: b4b3f7ccc5dd34d46bd1e733d2739fdb,
     type: 3}
+  explosionSFX: {fileID: 8300000, guid: a885c043fab7e46438bba03ba9dab6bc, type: 3}
