@@ -4,23 +4,21 @@ using UnityEngine;
 
 public class PowerUps : MonoBehaviour
 {
+    float speed = 3f;
+
     [SerializeField]
     int powerUpCode;
 
     [SerializeField]
     AudioClip powerUpSFX;
 
-    float speed = 3f;
-
     GameManager gameManager;
 
-    // Start is called before the first frame update
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (gameManager.GameStatus())

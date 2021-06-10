@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class EnemyLaser : MonoBehaviour
 {
-    float speed = 8f;
+    float speed = 10f;
+
+    Vector3 moveDirection;
 
     Player player;
 
     Rigidbody2D rigidBody;
 
-    Vector3 moveDirection;
-
-    // Start is called before the first frame update
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();

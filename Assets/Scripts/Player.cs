@@ -5,8 +5,19 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField]
     int lives = 3;
+
+    bool tripleShotActive = false;
+
+    bool speedBoostActive = false;
+
+    bool shieldActive = false;
+
+    float speed = 6.5f;
+
+    float fireRate = 0.25f;
+
+    float nextFire = 0;
 
     [SerializeField]
     int shieldLives = 3;
@@ -31,18 +42,6 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     AudioClip explosionSFX;
-
-    bool tripleShotActive = false;
-
-    bool speedBoostActive = false;
-
-    bool shieldActive = false;
-
-    float speed = 6.5f;
-
-    float fireRate = 0.25f;
-
-    float nextFire = 0;
 
     Coroutine TripleShotRoutine = null;
 
@@ -71,8 +70,14 @@ public class Player : MonoBehaviour
         else
         {
             Move();
+
+#if UNITY_ANDROID
+            if (CrossPlatformInputManager.GetButtonDown("Fire") && Time.time > nextFire)
+                Shoot();
+#else
             if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && Time.time > nextFire)
                 Shoot();
+#endif
         }
     }
 

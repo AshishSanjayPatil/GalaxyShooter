@@ -26,9 +26,14 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     Sprite[] livesImages;
 
+    [SerializeField]
+    GameObject androidControlls;
+
+    [SerializeField]
+    GameObject postProcessing;
+
     GameManager gameManager;
 
-    // Start is called before the first frame update
     void Start()
     {
         gameOverText.gameObject.SetActive(false);
@@ -38,12 +43,20 @@ public class UIManager : MonoBehaviour
         displayLives.gameObject.SetActive(true);
         gameManager = FindObjectOfType<GameManager>();
         scoreText.text = "Score: " + score.ToString();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+#if UNITY_ANDROID
+        if (androidControlls)
+            androidControlls.SetActive(true);
+
+        if (postProcessing)
+            postProcessing.SetActive(false);
+#else
+        if (androidControlls)
+            androidControlls.SetActive(false);
+
+        if (postProcessing)
+            postProcessing.SetActive(true);
+#endif
     }
 
     public void AddScore()
@@ -69,6 +82,9 @@ public class UIManager : MonoBehaviour
         scoreText.gameObject.SetActive(false);
         displayLives.gameObject.SetActive(false);
         StartCoroutine(FlickerVFX());
+
+        if (androidControlls)
+            androidControlls.SetActive(false);
     }
 
     IEnumerator FlickerVFX()

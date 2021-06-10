@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField]
     float spawnRate = 5;
 
     [SerializeField]
@@ -21,19 +20,12 @@ public class SpawnManager : MonoBehaviour
 
     GameManager gameManager;
 
-    // Start is called before the first frame update
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
         StartCoroutine(SpawnEnemy());
         StartCoroutine(SpawnPowerUps());
         StartCoroutine(SpawnAsteroid());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     IEnumerator SpawnEnemy()

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    float speed = 8f;
+
     [SerializeField]
     GameObject laserPrefab;
 
@@ -13,15 +15,12 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     AudioClip explosionSFX;
 
-    float speed = 8f;
-
     SpawnManager spawnManager;
 
     UIManager uiManager;
 
     GameManager gameManager;
 
-    // Start is called before the first frame update
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -30,7 +29,6 @@ public class Enemy : MonoBehaviour
         StartCoroutine(ShootLaser());
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (gameManager.GameStatus())
