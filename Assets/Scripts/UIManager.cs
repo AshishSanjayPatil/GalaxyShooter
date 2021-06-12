@@ -18,10 +18,10 @@ public class UIManager : MonoBehaviour
     Image displayLives;
 
     [SerializeField]
-    GameObject restartButton;
+    GameObject gameOverWindow;
 
     [SerializeField]
-    GameObject quitButton;
+    GameObject scoreTextWindow;
 
     [SerializeField]
     Sprite[] livesImages;
@@ -36,10 +36,8 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        gameOverText.gameObject.SetActive(false);
-        restartButton.SetActive(false);
-        quitButton.SetActive(false);
-        scoreText.gameObject.SetActive(true);
+        gameOverWindow.SetActive(false);
+        scoreTextWindow.SetActive(true);
         displayLives.gameObject.SetActive(true);
         gameManager = FindObjectOfType<GameManager>();
         scoreText.text = "Score: " + score.ToString();
@@ -63,6 +61,9 @@ public class UIManager : MonoBehaviour
     {
         score += 10;
         scoreText.text = "Score: " + score.ToString();
+
+        if (score > 1000)
+            scoreTextWindow.GetComponent<RectTransform>().sizeDelta = new Vector2(225, scoreTextWindow.GetComponent<RectTransform>().sizeDelta.y);
     }
 
     public void UpdateLives(int lives)
@@ -76,10 +77,8 @@ public class UIManager : MonoBehaviour
     public void GameOverSetting()
     {
         gameManager.EndGame();
-        gameOverText.gameObject.SetActive(true);
-        restartButton.SetActive(true);
-        quitButton.SetActive(true);
-        scoreText.gameObject.SetActive(false);
+        gameOverWindow.SetActive(true);
+        scoreTextWindow.SetActive(false);
         displayLives.gameObject.SetActive(false);
         StartCoroutine(FlickerVFX());
 

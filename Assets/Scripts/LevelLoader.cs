@@ -18,6 +18,11 @@ public class LevelLoader : MonoBehaviour
             Application.Quit();
     }
 
+    public void LoadScene(int sceneIndex)
+    {
+        SceneManager.LoadScene(sceneIndex);
+    }
+
     public void LoadNextScene()
     {
         SceneManager.LoadScene(currentIndex + 1);
