@@ -19,8 +19,15 @@ public class Player : MonoBehaviour
 
     float nextFire = 0;
 
+    string inputAxisHorizontal;
+
+    string inputAxisVertical;
+
     [SerializeField]
     int shieldLives = 3;
+
+    [SerializeField]
+    bool player1 = false;
 
     [SerializeField]
     GameObject deathVFX;
@@ -53,6 +60,8 @@ public class Player : MonoBehaviour
 
     UIManager uiManager;
 
+    GameManager gameManager;
+
     AudioSource audioSource;
 
     void Start()
@@ -60,11 +69,31 @@ public class Player : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         uiManager = FindObjectOfType<UIManager>();
         spawnManager = FindObjectOfType<SpawnManager>();
+        gameManager = FindObjectOfType<GameManager>();
         uiManager.UpdateLives(lives);
+
+        if (player1)
+        {
+            inputAxisHorizontal = "Horizontal";
+            inputAxisVertical = "Vertical";
+        }
+        else
+        {
+            inputAxisHorizontal = "Horizontal2";
+            inputAxisVertical = "Vertical2";
+        }
     }
 
     void Update()
     {
+        if (gameManager.GameStatus())
+        {
+            GameObject newDeathVFX = Instantiate(deathVFX, transform.position, Quaternion.identity);
+            newDeathVFX.transform.parent = spawnManager.CleanUpContainer();
+            Destroy(newDeathVFX, 3f);
+            Destroy(this.gameObject);
+        }
+
         if (transform.position.y <= -3.5f)
             transform.Translate(1.5f * Time.deltaTime * Vector3.up);
         else
@@ -75,7 +104,9 @@ public class Player : MonoBehaviour
             if (CrossPlatformInputManager.GetButtonDown("Fire") && Time.time > nextFire)
                 Shoot();
 #else
-            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && Time.time > nextFire)
+            if (Input.GetKeyDown(KeyCode.Space) && player1 && Time.time > nextFire)
+                Shoot();
+            else if (Input.GetKeyDown(KeyCode.KeypadEnter) && !player1 && Time.time > nextFire)
                 Shoot();
 #endif
         }
@@ -83,8 +114,8 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        float horizontalInput = CrossPlatformInputManager.GetAxis("Horizontal");
-        float verticalInput = CrossPlatformInputManager.GetAxis("Vertical");
+        float horizontalInput = CrossPlatformInputManager.GetAxis(inputAxisHorizontal);
+        float verticalInput = CrossPlatformInputManager.GetAxis(inputAxisVertical);
 
         if (!speedBoostActive)
             transform.Translate(speed * Time.deltaTime * new Vector3(horizontalInput, verticalInput, 0));
@@ -139,6 +170,7 @@ public class Player : MonoBehaviour
 
             if (lives <= 0)
             {
+                lives = 0;
                 AudioSource.PlayClipAtPoint(explosionSFX, Camera.main.transform.position, 0.5f);
                 GameObject newDeathVFX = Instantiate(deathVFX, transform.position, Quaternion.identity);
                 newDeathVFX.transform.parent = spawnManager.CleanUpContainer();

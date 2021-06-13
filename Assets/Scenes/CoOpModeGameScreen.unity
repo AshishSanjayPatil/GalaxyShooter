@@ -2792,6 +2792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b419b0d1ef144b749bb3e3a409671d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameModeSinglePlayer: 0
 --- !u!1 &1700899390
 GameObject:
   m_ObjectHideFlags: 0
@@ -2927,6 +2928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shieldLives: 3
+  player1: 1
   deathVFX: {fileID: 6505144611379430233, guid: 269fca98d87ac2c46b8d9f4c942bbc9a,
     type: 3}
   laserPrefab: {fileID: 8811482047006283117, guid: fc709216c2e569b4dad7a57e218c91a1,
@@ -3469,6 +3471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shieldLives: 3
+  player1: 0
   deathVFX: {fileID: 6505144611379430233, guid: 269fca98d87ac2c46b8d9f4c942bbc9a,
     type: 3}
   laserPrefab: {fileID: 8811482047006283117, guid: fc709216c2e569b4dad7a57e218c91a1,

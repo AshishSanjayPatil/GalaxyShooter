@@ -8,18 +8,18 @@ public class EnemyLaser : MonoBehaviour
 
     Vector3 moveDirection;
 
-    Player player;
+    Player[] player;
 
     Rigidbody2D rigidBody;
 
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-        player = FindObjectOfType<Player>();
+        player = FindObjectsOfType<Player>();
 
-        if (player)
+        if (player.Length > 0)
         {
-            moveDirection = (player.transform.position - transform.position).normalized * speed;
+            moveDirection = (player[Random.Range(0, player.Length)].transform.position - transform.position).normalized * speed;
             rigidBody.velocity = new Vector3(moveDirection.x + 0.5f, moveDirection.y, 0);
         }
         else
@@ -32,7 +32,7 @@ public class EnemyLaser : MonoBehaviour
     {
         if (collision.GetComponent<Player>())
         {
-            player.ReduceLives();
+            collision.GetComponent<Player>().ReduceLives();
             Destroy(this.gameObject);
         }
     }

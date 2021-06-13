@@ -2653,6 +2653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shieldLives: 3
+  player1: 1
   deathVFX: {fileID: 6505144611379430233, guid: 269fca98d87ac2c46b8d9f4c942bbc9a,
     type: 3}
   laserPrefab: {fileID: 8811482047006283117, guid: fc709216c2e569b4dad7a57e218c91a1,
