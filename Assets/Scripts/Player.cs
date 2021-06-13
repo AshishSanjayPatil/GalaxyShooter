@@ -155,8 +155,12 @@ public class Player : MonoBehaviour
     {
         if (!shieldActive)
         {
-            lives--;
-            uiManager.UpdateLives(lives);
+            lives--; 
+            
+            if (!player1)
+                uiManager.UpdateLives(lives, 2);
+            else
+                uiManager.UpdateLives(lives);
 
             if (lives == 1)
             {
@@ -201,7 +205,11 @@ public class Player : MonoBehaviour
         if (lives < 3)
         {
             lives++;
-            uiManager.UpdateLives(lives);
+
+            if (!player1)
+                uiManager.UpdateLives(lives, 2);
+            else
+                uiManager.UpdateLives(lives);
 
             if (engineDamage[0].activeSelf && engineDamage[1].activeSelf)
                 engineDamage[Random.Range(0, engineDamage.Length)].SetActive(false);

@@ -24,6 +24,9 @@ public class UIManager : MonoBehaviour
     GameObject scoreTextWindow;
 
     [SerializeField]
+    GameObject displayLivesWindow;
+
+    [SerializeField]
     Sprite[] livesImages;
 
     [SerializeField]
@@ -38,7 +41,7 @@ public class UIManager : MonoBehaviour
     {
         gameOverWindow.SetActive(false);
         scoreTextWindow.SetActive(true);
-        displayLives.gameObject.SetActive(true);
+        displayLivesWindow.SetActive(true);
         gameManager = FindObjectOfType<GameManager>();
         scoreText.text = "Score: " + score.ToString();
 
@@ -66,8 +69,13 @@ public class UIManager : MonoBehaviour
             scoreTextWindow.GetComponent<RectTransform>().sizeDelta = new Vector2(225, scoreTextWindow.GetComponent<RectTransform>().sizeDelta.y);
     }
 
-    public void UpdateLives(int lives)
+    public void UpdateLives(int lives, int player = 1)
     {
+        if (player == 1)
+            displayLivesWindow.GetComponent<Image>().color = new Color32(66, 192, 146, 225);
+        else if (player == 2)
+            displayLivesWindow.GetComponent<Image>().color = new Color32(192, 75, 66, 225);
+
         displayLives.sprite = livesImages[lives];
 
         if (lives <= 0)
@@ -79,7 +87,7 @@ public class UIManager : MonoBehaviour
         gameManager.EndGame();
         gameOverWindow.SetActive(true);
         scoreTextWindow.SetActive(false);
-        displayLives.gameObject.SetActive(false);
+        displayLivesWindow.SetActive(false);
         StartCoroutine(FlickerVFX());
 
         if (androidControlls)
