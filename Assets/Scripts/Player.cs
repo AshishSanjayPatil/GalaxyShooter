@@ -103,8 +103,6 @@ public class Player : MonoBehaviour
         {
             Move();
 
-            PlayerAnimations();
-
 #if UNITY_ANDROID
             if (CrossPlatformInputManager.GetButtonDown("Fire") && Time.time > nextFire)
                 Shoot();
@@ -122,6 +120,22 @@ public class Player : MonoBehaviour
         float horizontalInput = CrossPlatformInputManager.GetAxis(inputAxisHorizontal);
         float verticalInput = CrossPlatformInputManager.GetAxis(inputAxisVertical);
 
+        if (horizontalInput > 0)
+        {
+            animator.SetBool("isTurningRight", true);
+            animator.SetBool("isTurningLeft", false);
+        }
+        else if (horizontalInput < 0)
+        {
+            animator.SetBool("isTurningLeft", true);
+            animator.SetBool("isTurningRight", false);
+        }
+        else
+        {
+            animator.SetBool("isTurningLeft", false);
+            animator.SetBool("isTurningRight", false);
+        }
+
         if (!speedBoostActive)
             transform.Translate(speed * Time.deltaTime * new Vector3(horizontalInput, verticalInput, 0));
         else
@@ -136,46 +150,6 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(-11.5f, transform.position.y, 0);
         else if (transform.position.x <= -11.5f)
             transform.position = new Vector3(11.5f, transform.position.y, 0);
-    }
-
-    private void PlayerAnimations()
-    {
-        if (player1)
-        {
-            if (Input.GetKey(KeyCode.A))
-            {
-                animator.SetBool("isTurningLeft", true);
-                animator.SetBool("isTurningRight", false);
-            }
-            else if (Input.GetKey(KeyCode.D))
-            {
-                animator.SetBool("isTurningRight", true);
-                animator.SetBool("isTurningLeft", false);
-            }
-            else
-            {
-                animator.SetBool("isTurningLeft", false);
-                animator.SetBool("isTurningRight", false);
-            }
-        }
-        else
-        {
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                animator.SetBool("isTurningLeft", true);
-                animator.SetBool("isTurningRight", false);
-            }
-            else if (Input.GetKey(KeyCode.RightArrow))
-            {
-                animator.SetBool("isTurningRight", true);
-                animator.SetBool("isTurningLeft", false);
-            }
-            else
-            {
-                animator.SetBool("isTurningLeft", false);
-                animator.SetBool("isTurningRight", false);
-            }
-        }
     }
 
     private void Shoot()
