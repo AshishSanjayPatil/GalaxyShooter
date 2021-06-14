@@ -35,6 +35,7 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadStartMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
 

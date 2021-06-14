@@ -12,6 +12,9 @@ public class UIManager : MonoBehaviour
     TextMeshProUGUI gameOverText;
 
     [SerializeField]
+    TextMeshProUGUI pauseGameText;
+
+    [SerializeField]
     TextMeshProUGUI scoreText;
 
     [SerializeField]
@@ -27,6 +30,9 @@ public class UIManager : MonoBehaviour
     GameObject displayLivesWindow;
 
     [SerializeField]
+    GameObject pauseMenuWindow;
+
+    [SerializeField]
     Sprite[] livesImages;
 
     [SerializeField]
@@ -40,6 +46,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         gameOverWindow.SetActive(false);
+        pauseMenuWindow.SetActive(false);
         scoreTextWindow.SetActive(true);
         displayLivesWindow.SetActive(true);
         gameManager = FindObjectOfType<GameManager>();
@@ -58,6 +65,16 @@ public class UIManager : MonoBehaviour
         if (postProcessing)
             postProcessing.SetActive(true);
 #endif
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            pauseMenuWindow.SetActive(true);
+            StartCoroutine(FlickerVFX(pauseGameText, "Game Paused"));
+            Time.timeScale = 0;
+        }
     }
 
     public void AddScore()
@@ -88,20 +105,26 @@ public class UIManager : MonoBehaviour
         gameOverWindow.SetActive(true);
         scoreTextWindow.SetActive(false);
         displayLivesWindow.SetActive(false);
-        StartCoroutine(FlickerVFX());
+        StartCoroutine(FlickerVFX(gameOverText, "Game Over"));
 
         if (androidControlls)
             androidControlls.SetActive(false);
     }
 
-    IEnumerator FlickerVFX()
+    public void ResumeGame()
+    {
+        pauseMenuWindow.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    IEnumerator FlickerVFX(TextMeshProUGUI setText, string textToSet)
     {
         while (true)
         {
-            gameOverText.text = "Game Over";
-            yield return new WaitForSeconds(0.5f);
-            gameOverText.text = "";
-            yield return new WaitForSeconds(0.5f);
+            setText.text = textToSet;
+            yield return new WaitForSecondsRealtime(0.5f);
+            setText.text = "";
+            yield return new WaitForSecondsRealtime(0.5f);
         }
     }
 }
