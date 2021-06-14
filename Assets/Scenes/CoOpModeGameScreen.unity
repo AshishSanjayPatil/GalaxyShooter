@@ -2982,6 +2982,7 @@ GameObject:
   - component: {fileID: 1719153073}
   - component: {fileID: 1719153072}
   - component: {fileID: 1719153076}
+  - component: {fileID: 1719153077}
   - component: {fileID: 1719153071}
   m_Layer: 0
   m_Name: Player 1
@@ -3227,6 +3228,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &1719153077
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719153070}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f7b19d0bd865dd9408bdd6abfcd821ea, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1753068801
 GameObject:
   m_ObjectHideFlags: 0
@@ -3525,6 +3545,7 @@ GameObject:
   - component: {fileID: 2022911932}
   - component: {fileID: 2022911931}
   - component: {fileID: 2022911930}
+  - component: {fileID: 2022911935}
   - component: {fileID: 2022911929}
   m_Layer: 0
   m_Name: Player 2
@@ -3770,6 +3791,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &2022911935
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022911928}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f7b19d0bd865dd9408bdd6abfcd821ea, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2092409628
 GameObject:
   m_ObjectHideFlags: 0
