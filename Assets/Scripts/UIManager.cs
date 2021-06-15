@@ -55,6 +55,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     GameObject postProcessing;
 
+    Coroutine flickerCoroutine = null;
+
     GameManager gameManager;
 
     void Start()
@@ -94,7 +96,14 @@ public class UIManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             pauseMenuWindow.SetActive(true);
-            StartCoroutine(FlickerVFX(pauseGameText, "Game Paused"));
+
+            if (flickerCoroutine != null)
+            {
+                StopCoroutine(flickerCoroutine);
+            }
+
+            flickerCoroutine = StartCoroutine(FlickerVFX(pauseGameText, "Game Paused"));
+
             Time.timeScale = 0;
         }
     }
@@ -135,7 +144,14 @@ public class UIManager : MonoBehaviour
         gameOverWindow.SetActive(true);
         scoreTextWindow.SetActive(false);
         displayLivesWindow.SetActive(false);
-        StartCoroutine(FlickerVFX(gameOverText, "Game Over"));
+
+        if (flickerCoroutine != null)
+        {
+            StopCoroutine(flickerCoroutine);
+        }
+
+
+        flickerCoroutine = StartCoroutine(FlickerVFX(gameOverText, "Game Over"));
 
         if (androidControlls)
             androidControlls.SetActive(false);
