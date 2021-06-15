@@ -109,10 +109,10 @@ public class UIManager : MonoBehaviour
             highScore = score;
             PlayerPrefs.SetInt(highScoreKey, highScore);
             PlayerPrefs.Save();
-            highScoreText.text = "High Score: " + PlayerPrefs.GetInt(highScoreKey).ToString();
+            highScoreText.text = "High Score: " + highScore.ToString();
         }
 
-        if (PlayerPrefs.GetInt(highScoreKey) > 10000)
+        if (highScore > 10000)
             scoreTextWindow.GetComponent<RectTransform>().sizeDelta = new Vector2(275, scoreTextWindow.GetComponent<RectTransform>().sizeDelta.y);
     }
 
