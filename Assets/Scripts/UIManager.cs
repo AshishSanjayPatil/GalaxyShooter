@@ -8,6 +8,17 @@ public class UIManager : MonoBehaviour
 {
     int score = 0;
 
+    int highScore = 0;
+
+    string highScoreKey;
+
+    const string SINGLE_PLAYER_HIGH_SCORE_KEY = "high score";
+
+    const string CoOp_HIGH_SCORE_KEY = "CoOp High Score";
+
+    [SerializeField]
+    bool playModeSinglePlayer = false;
+
     [SerializeField]
     TextMeshProUGUI gameOverText;
 
@@ -16,6 +27,9 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     TextMeshProUGUI scoreText;
+
+    [SerializeField]
+    TextMeshProUGUI highScoreText;
 
     [SerializeField]
     Image displayLives;
@@ -49,8 +63,16 @@ public class UIManager : MonoBehaviour
         pauseMenuWindow.SetActive(false);
         scoreTextWindow.SetActive(true);
         displayLivesWindow.SetActive(true);
+
+        if (playModeSinglePlayer)
+            highScoreKey = SINGLE_PLAYER_HIGH_SCORE_KEY;
+        else
+            highScoreKey = CoOp_HIGH_SCORE_KEY;
+
+        highScore = PlayerPrefs.GetInt(highScoreKey, 0);
         gameManager = FindObjectOfType<GameManager>();
         scoreText.text = "Score: " + score.ToString();
+        highScoreText.text = "High Score: " + highScore.ToString();
 
 #if UNITY_ANDROID
         if (androidControlls)
@@ -82,8 +104,16 @@ public class UIManager : MonoBehaviour
         score += 10;
         scoreText.text = "Score: " + score.ToString();
 
-        if (score > 1000)
-            scoreTextWindow.GetComponent<RectTransform>().sizeDelta = new Vector2(225, scoreTextWindow.GetComponent<RectTransform>().sizeDelta.y);
+        if (score > highScore)
+        {
+            highScore = score;
+            PlayerPrefs.SetInt(highScoreKey, highScore);
+            PlayerPrefs.Save();
+            highScoreText.text = "High Score: " + PlayerPrefs.GetInt(highScoreKey).ToString();
+        }
+
+        if (PlayerPrefs.GetInt(highScoreKey) > 10000)
+            scoreTextWindow.GetComponent<RectTransform>().sizeDelta = new Vector2(275, scoreTextWindow.GetComponent<RectTransform>().sizeDelta.y);
     }
 
     public void UpdateLives(int lives, int player = 1)
